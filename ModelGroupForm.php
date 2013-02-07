@@ -27,9 +27,9 @@ class ModelGroupForm extends CFormModel
 		$name = $this->resolveModelAttribute($name);
 		if (is_array($name)) 
 		{
-			list($modelName, $attribute) = $name;
-			if (!empty($attribute) && isset($this->models[$modelName]))
-				return $this->models[$modelName]->{$attribute};
+			list($modelName, $attributeName) = $name;
+			if (isset($this->models[$modelName]))
+				return $this->models[$modelName]->{$attributeName};
 		}
 		return parent::__get($name);
 	}
@@ -47,9 +47,9 @@ class ModelGroupForm extends CFormModel
 			$name = $this->resolveModelAttribute($name);
 			if (is_array($name)) 
 			{
-				list($name, $attribute) = $name;
-				if (isset($this->models[$name]))
-					$this->models[$name]->{$attribute} = $value;
+				list($modelName, $attributeName) = $name;
+				if (isset($this->models[$modelName]))
+					$this->models[$modelName]->{$attributeName} = $value;
 			}
 		}
 	}
@@ -79,7 +79,7 @@ class ModelGroupForm extends CFormModel
 		if (is_array($attribute)) 
 		{
 			list($modelName, $attributeName) = $attribute;
-			if (!empty($attributeName) && isset($this->models[$modelName]))
+			if (isset($this->models[$modelName]))
 				return $this->models[$modelName]->getAttributeLabel($attributeName);
 		} 
 		return parent::getAttributeLabel($attribute);
@@ -125,9 +125,9 @@ class ModelGroupForm extends CFormModel
 		$attribute = $this->resolveModelAttribute($attribute);
 		if (is_array($attribute)) 
 		{
-			list($modelName, $attribute) = $attribute;
-			if (!empty($attribute) && isset($this->models[$modelName]))
-				return $this->models[$modelName]->getError($attribute);
+			list($modelName, $attributeName) = $attribute;
+			if (isset($this->models[$modelName]))
+				return $this->models[$modelName]->getError($attributeName);
 		}
 		return parent::getError($attribute);
 	}
