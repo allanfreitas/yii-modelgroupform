@@ -5,6 +5,8 @@ A form model that can handle other models in massive way.
 
 ## Usage
 
+Unzip the files under **protected/extensions/modelgroup** and import the model in your application configuration.
+
 You can either use this model directly or extend it. Here's an example on its usage:
 
 **ExampleController.php**
@@ -44,7 +46,7 @@ $this->render('example-view', array('model' => $model));
 
 **example-view.php**
 ```php
-<?php $form = $this->widget('CActiveForm'); ?>
+<?php $form = $this->beginWidget('CActiveForm'); ?>
 
 <!-- user model fields -->
 <?php echo $form->textField($model, 'user.name'); ?>
